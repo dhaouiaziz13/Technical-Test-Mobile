@@ -1,0 +1,16 @@
+// ///////////////////////////////////Task 1////////////////////////////////////////////////////////////
+// Given a number , Return _The Minimum number _ could be formed from the digits of the number given .
+
+// Input >> Output Examples:
+// minNumber (213) ==> return (123)
+// minNumber (527) ==> return (257)
+// minNumber (398) ===> return (398)
+
+// // Notes
+// // Only Natural numbers passed to the function , numbers Contain digits [0:9] inclusive
+
+
+
+int minNumber(n) {
+  // your code here
+}

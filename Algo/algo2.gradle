@@ -1,0 +1,25 @@
+////////////////////////////////// Task2 ////////////////////////////////
+// Given an array of positive integers (the tall of the people), return a new array/tuple of two integers, 
+// where the first one is the total height of team 1, and the second one is the total height of team 2.
+
+// Several people are standing in a row divided into two teams.
+// The first person goes into team 1, the second goes into team 2, the third goes into team 1, and so on.
+
+// Explanation:
+// The first element 380 is the total height of team 1, and the second element 180 is the total weight of team 2.
+
+
+// test Output
+// rowheights([170, 180, 210])  ==>  return (380, 180)
+// rowheights([150, 160, 170, 180])  ==>  return (320, 340)
+// rowheights([190]) ==> return (190,0)
+
+
+
+
+
+
+
+List<int> rowHeights(arr) {
+  // your code here
+}
