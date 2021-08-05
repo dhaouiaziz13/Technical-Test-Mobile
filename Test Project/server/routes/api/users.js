@@ -21,20 +21,20 @@ const login_schema = joi.object({
 //------------------ SingUp process ---------------------
 
 router.post("/signup", async (req, res) => {
+  //form control
   const isvalid = signup_schema.validate(req.body);
   if (isvalid.error) {
     console.log(isvalid.error.details[0].message);
     return res.json({ message: isvalid.error.details[0].message });
   }
-  // console.log(req.body);
+  // hashing passwords
   bcrypt.hash(req.body.password, 10).then((hash) => {
-    // console.log(hash);
     const user = new User({
       useremail: req.body.email,
       username: req.body.username,
       password: hash,
     });
-
+    //checking if email already exists to avoid duplicates
     User.findOne({ email: req.body.email })
       .then((user1) => {
         if (user1) {
@@ -42,7 +42,7 @@ router.post("/signup", async (req, res) => {
             message: "User Already Exist",
           });
         }
-
+        //saving user
         user.save().then((result) => {
           if (!result) {
             return res.status(500).json({
@@ -67,16 +67,19 @@ router.post("/signup", async (req, res) => {
 
 router.post("/signin", async (req, res) => {
   console.log(req.body);
+  //form control
   const isvalid = login_schema.validate(req.body);
   if (isvalid.error) {
     return res.json({ message: isvalid.error.details[0].message });
   }
+  //checking if user exists
   const user = await User.findOne({ useremail: req.body.email });
   if (!user) {
     return res.json({
       message: "Auth failed no such user",
     });
   } else {
+    //comparing passowrds to check if the user typed the correct password
     return bcrypt
       .compare(req.body.password, user.password)
 
@@ -86,9 +89,10 @@ router.post("/signin", async (req, res) => {
             message: "Auth failed inccorect password",
           });
         }
+        //creating jwt token
         const token = jwt.sign(
           { email: user.email, userId: user._id },
-          "secret_this_should_be_longer",
+          "secret",
           { expiresIn: "36h" }
         );
         res.status(200).json({
@@ -103,7 +107,7 @@ router.post("/signin", async (req, res) => {
       });
   }
 });
-//---------------------fetching users-------------------
+//---------------------fetching user-------------------
 
 router.post("/fetch", (req, res) => {
   User.findOne({ _id: req.body.id }, (err, doc) => {

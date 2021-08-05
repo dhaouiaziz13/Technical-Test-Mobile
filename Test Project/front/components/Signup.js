@@ -16,6 +16,7 @@ import { apiurl } from "../vars";
 export default ({ history }) => {
   //////////////////////////////////////////
   useEffect(() => {
+    //check if user is signed in
     AsyncStorage.getItem("token").then((val) => {
       if (val !== null) {
         history.push("/main");
@@ -28,6 +29,7 @@ export default ({ history }) => {
   const [username, setusername] = useState("");
   const [notif, setnotif] = useState(false);
   const [data, setdata] = useState();
+  //-------------------notification function------------------------------
   const notify = () => {
     setnotif(true);
     setTimeout(() => {
@@ -43,6 +45,7 @@ export default ({ history }) => {
   //     </TouchableWithoutFeedback>
   //   );
   ////////////////////////////////
+  //-------------------signup function------------------------------
   const signup = async () => {
     const res = await axios.post(apiurl + "/api/users/signup", {
       email,
@@ -56,6 +59,7 @@ export default ({ history }) => {
     }
     return notify();
   };
+  /////////////////////////////////////////////////////////////////
   return (
     <View>
       <Text style={styles.textcolor}>SIGNUP</Text>

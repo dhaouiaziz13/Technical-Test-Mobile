@@ -19,6 +19,7 @@ export default ({ history }) => {
 
   /////////////////////////////////////
   useEffect(() => {
+    //check if user is logged in
     AsyncStorage.getItem("token").then((val) => {
       if (val !== null) {
         history.push("/main");
@@ -26,6 +27,7 @@ export default ({ history }) => {
     });
   }, []);
   /////////////////////////////////////
+  //-----------------notification function------------------------
   const notify = () => {
     setnotif(true);
     setTimeout(() => {
@@ -33,6 +35,7 @@ export default ({ history }) => {
     }, 1500);
   };
   ////////////////////////////////////
+  //-----------------------------login function----------------------------------
   const login = async () => {
     const res = await axios.post(apiurl + "/api/users/signin", {
       email,

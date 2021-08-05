@@ -16,12 +16,13 @@ export default ({ history }) => {
   const [data, setdata] = useState();
   /////////////////////////////////////
   useEffect(() => {
+    //check if user is signed in
     AsyncStorage.getItem("token").then((val) => {
       if (val === null) {
         history.push("/");
       }
     });
-
+    //fetching user data
     AsyncStorage.getItem("userid").then((val) => {
       if (val !== null) {
         axios.post(apiurl + "/api/users/fetch", { id: val }).then((res) => {
@@ -31,6 +32,7 @@ export default ({ history }) => {
     });
   }, []);
   /////////////////////////////////////
+  //--------------------------deleting user-------------------------
   const del = () => {
     axios
       .post(apiurl + "/api/users/delete", { id: data._id })
@@ -48,6 +50,7 @@ export default ({ history }) => {
         }
       });
   };
+  //--------------------------notification function-------------------------
   const notify = () => {
     setnotif(true);
     setTimeout(() => {
