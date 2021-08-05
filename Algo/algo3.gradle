@@ -5,10 +5,14 @@
 
 // createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]) // => returns "(123) 456-7890"
 
+function createPhoneNumber(numbers) {
+  //the phone number format
+  var format = "(xxx) xxx-xxxx";
 
+  for (var i = 0; i < numbers.length; i++) {
+    //since replace in js replaces the first occurence each time the first x will be replaced with the corresponding number
+    format = format.replace("x", numbers[i]);
+  }
 
-
-
-String createPhoneNumber(List numbers) {
-  // Your code goes here
+  return format;
 }

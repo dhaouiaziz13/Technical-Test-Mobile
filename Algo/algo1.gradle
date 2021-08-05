@@ -11,6 +11,38 @@
 
 
 
-int minNumber(n) {
-  // your code here
+
+function minNumber(num)
+{
+    // initialize frequency of each digit to Zero
+    var freq = Array(10).fill(0);
+ 
+    // count frequency of each digit in the number
+    while (num)
+    {
+        var d = num % 10; // extract last digit
+        freq[d]++; // increment counting
+        //remove last digit
+        num = parseInt(num / 10);  
+    }
+ 
+    // Set the LEFTMOST digit to minimum expect 0
+    var result = 0;
+    for (var i = 1 ; i <= 9 ; i++)
+    {
+        if (freq[i])
+        {
+            result = i;
+            freq[i]--;
+            break;
+        }
+    }
+ 
+    // arrange all remaining digits
+    // in ascending order
+    for (var i = 0 ; i <= 9 ; i++)
+        while (freq[i]--)
+            result = result * 10 + i;
+ 
+    return result;
 }

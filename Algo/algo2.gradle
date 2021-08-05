@@ -1,5 +1,5 @@
 ////////////////////////////////// Task2 ////////////////////////////////
-// Given an array of positive integers (the tall of the people), return a new array/tuple of two integers, 
+// Given an array of positive integers (the tall of the people), return a new array/tuple of two integers,
 // where the first one is the total height of team 1, and the second one is the total height of team 2.
 
 // Several people are standing in a row divided into two teams.
@@ -8,18 +8,43 @@
 // Explanation:
 // The first element 380 is the total height of team 1, and the second element 180 is the total weight of team 2.
 
-
 // test Output
 // rowheights([170, 180, 210])  ==>  return (380, 180)
 // rowheights([150, 160, 170, 180])  ==>  return (320, 340)
 // rowheights([190]) ==> return (190,0)
 
+// List<int> rowHeights(arr) {
+//   // your code here
+// }
 
+function rowHeights(arr) {
+  //initializing the arrays
+  let team1 = [];
+  let team2 = [];
+  let result = [];
+  //handeling arrays that are empty or have one value
+  if (arr.length <= 1) {
+    return arr;
+  }
 
+  for (let i = 0; i < arr.length; i++) {
+    const item = arr[i];
+    //checking if i is even or not if its even the value will be added to second team otherwise first team
+    if (i % 2 === 0) {
+      team2.push(item);
+    } else {
+      team1.push(item);
+    }
+  }
+  // creating the sum of each team using reduce
+  let res1 = team1.reduce((acc, val) => {
+    return (acc += val);
+  });
+  let res2 = team2.reduce((acc, val) => {
+    return (acc += val);
+  });
 
+  result.push(res2, res1);//adding the results to the final array that will be returned
 
-
-
-List<int> rowHeights(arr) {
-  // your code here
+  return result;
 }
