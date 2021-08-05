@@ -16,7 +16,7 @@
 
 #////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-# im not a fan of flutter i usually use react native its my main framework but i have small experience with flutter
+# im not a fan of flutter i usually use react native its my main framework 
 
 # 1////////// Explain Stateful Widget Lifecycle? /////////////
 
